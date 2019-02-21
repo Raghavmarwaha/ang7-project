@@ -1,0 +1,14 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">ABC Technologies</a>
+    <!-- Navbar links -->
+      <ul class="navbar-nav">
+        <!-- structural directives -->
+       <li *ngFor ="let item of menuItems">
+         <a routerLink="{{item|lowercase}}">{{item}}</a>
+       </li>
+      </ul>
+  </nav>
+  </div>
+

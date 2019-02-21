@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+</head>
+<body>
+    <h2>form example</h2>
+    <form #signUpForm="ngForm" (ngSubmit)="postform()">
+        <pre>
+            {{signUpForm.value|json}}
+        </pre>
+        <div class="container">
+            <div class="form-group">
+                <label for="name">Enter name:</label>
+                <input type="text" 
+                id="name"
+                class="form-control" 
+                #username="ngModel"
+                [(ngModel)]="user.name" name="name" required> 
+                <p *ngIf="username.errors?.required">username is required</p>
+            </div>
+                <div class="form-group">        
+                <label for="contact">Enter contact:</label>
+                <input type="text" id="contact" class="form-control"
+                minlength="5"
+                maxlength="10"
+                #usercontact="ngModel"
+
+                [(ngModel)]="user.contact" name="contact" required>
+                <p *ngIf="usercontact.errors?.required">contact is required</p>
+                <p *ngIf="usercontact.errors?.minlength">minlength is 5</p>
+                <p *ngIf="usercontact.errors?.maxlength">maxlength is 10</p>
+            </div>
+                <div class="form-group">
+                <label for="address">Enter address:</label>
+                <input type="text" id="address"
+                 class="form-control"
+                 #useraddress="ngModel"
+                  [(ngModel)]="user.address" 
+                  name="address" required>
+                  <p *ngIf="useraddress.errors?.required">address is required</p>
+
+
+            </div>
+                <div class="form-group">
+                <label for="email">Enter Email:</label>
+                <input type="text" id="email" 
+                class="form-control" 
+                #useremail="ngModel"
+
+                [(ngModel)]="user.email"
+                [email]=true name="email" required>
+                <p *ngIf="useremail.errors?.required">email is required</p>
+                <p *ngIf="useremail.errors?.email">email pattern is required</p>
+            </div>
+            <button [disabled]= "signUpForm.invalid" class="btn btn-primary">submit</button>
+        </div>
+    </form>
+</body>
+</html>
